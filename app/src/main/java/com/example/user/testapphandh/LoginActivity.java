@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
         setUpToolbar(binding.toolbar);
     }
 
-    private void setUpToolbar(Toolbar toolbar){
+    private void setUpToolbar(Toolbar toolbar) {
         toolbar.setTitle(R.string.title_activity_login);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
