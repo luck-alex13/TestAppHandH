@@ -18,6 +18,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         setUpToolbar(binding.toolbar);
+
+        binding.content.emailSignInButton.setOnClickListener(v -> {
+            boolean res = ValidationHelper.isValidEmail(binding.content.email.getText().toString());
+            SnackbarHelper.showSnack(v, String.valueOf(res));
+        });
     }
 
     private void setUpToolbar(Toolbar toolbar) {
@@ -41,6 +46,10 @@ public class LoginActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
+            case R.id.create: {
+                // do smth
+                return true;
+            }
         }
 
         return super.onOptionsItemSelected(item);
