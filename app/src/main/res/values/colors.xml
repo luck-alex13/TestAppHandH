@@ -11,5 +11,6 @@
     <color name="clear_white">#fff</color>
     <color name="secondaryTextGrey">#727272</color>
     <color name="primaryTextBlack">#212121</color>
+    <color name="black_soft">#414141</color>
 
 </resources>
