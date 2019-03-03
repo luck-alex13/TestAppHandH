@@ -9,4 +9,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="YellowButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/yellow_gold</item>
+        <item name="colorAccent">@color/yellow_gold</item>
+        <item name="android:textColor">@color/clear_white</item>
+    </style>
+
 </resources>

@@ -59,13 +59,14 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                style="@style/Widget.AppCompat.Button.Colored"
+                android:theme="@style/YellowButton"
                 android:id="@+id/email_sign_in_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
-                android:textStyle="bold" />
+                android:textStyle="normal"
+                android:textSize="@dimen/text_size_small" />
 
         </LinearLayout>
     </ScrollView>
