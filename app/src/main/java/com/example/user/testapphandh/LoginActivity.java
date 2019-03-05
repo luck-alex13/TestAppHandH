@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         LoginViewModel viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
 
         binding.content.emailSignInButton.setOnClickListener(v -> {
-            viewModel.validateEmail(binding.content.email);
+            viewModel.loginClicked(binding.content.email, binding.content.password);
         });
     }
 
