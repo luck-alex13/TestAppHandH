@@ -1,5 +1,6 @@
 package com.example.user.testapphandh;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,9 +20,10 @@ public class LoginActivity extends AppCompatActivity {
         ActivityLoginBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         setUpToolbar(binding.toolbar);
 
+        LoginViewModel viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+
         binding.content.emailSignInButton.setOnClickListener(v -> {
-            boolean res = ValidationHelper.isValidEmail(binding.content.email.getText().toString());
-            SnackbarHelper.showSnack(v, String.valueOf(res));
+            viewModel.validateEmail(binding.content.email);
         });
     }
 
