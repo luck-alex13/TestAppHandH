@@ -12,6 +12,6 @@ public interface RestApi {
     Observable<WeatherResponse> getWeatherInCity(
             @Query("id") String cityId,
             @Query("lang") String languageCode,
-            @Query("unit") String unit
+            @Query("units") String unit
     );
 }
