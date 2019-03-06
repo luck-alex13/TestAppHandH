@@ -1,4 +1,4 @@
-package com.example.user.testapphandh.network;
+package com.example.user.testapphandh.data;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

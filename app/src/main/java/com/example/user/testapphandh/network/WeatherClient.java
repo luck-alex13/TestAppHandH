@@ -1,6 +1,7 @@
 package com.example.user.testapphandh.network;
 
 import com.example.user.testapphandh.BuildConfig;
+import com.example.user.testapphandh.data.WeatherResponse;
 
 import java.util.concurrent.TimeUnit;
 
@@ -67,7 +68,7 @@ public class WeatherClient {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Observable<BaseRequest> getWeatherInCity(String cityId) {
+    public Observable<WeatherResponse> getWeatherInCity(String cityId) {
         return makeAsynk(restApi.getWeatherInCity(cityId));
     }
 }

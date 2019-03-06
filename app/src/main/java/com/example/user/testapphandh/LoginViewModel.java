@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.example.user.testapphandh.data.WeatherResponse;
 import com.example.user.testapphandh.helpers.Utils;
 import com.example.user.testapphandh.helpers.ValidationHelper;
-import com.example.user.testapphandh.network.BaseRequest;
 import com.example.user.testapphandh.network.Const;
 import com.example.user.testapphandh.network.WeatherClient;
 
@@ -66,9 +66,9 @@ public class LoginViewModel extends AndroidViewModel {
     public void requestWeather(){
         if(checkConnection(getApplication(), R.string.no_internet_connection)){
            Disposable dp = WeatherClient.getInstance().getWeatherInCity(Const.SPB_CITY_ID)
-                    .subscribe(new Consumer<BaseRequest>() {
+                    .subscribe(new Consumer<WeatherResponse>() {
                         @Override
-                        public void accept(BaseRequest baseRequest) throws Exception {
+                        public void accept(WeatherResponse weatherResponse) throws Exception {
 
                         }
                     });
