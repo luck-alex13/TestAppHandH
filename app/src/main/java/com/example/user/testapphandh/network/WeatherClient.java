@@ -23,8 +23,6 @@ public class WeatherClient {
     public WeatherClient() {
 
         restApi = createApi();
-
-        _instance = this;
     }
 
     private RestApi createApi() {
@@ -59,6 +57,8 @@ public class WeatherClient {
     }
 
     public static WeatherClient getInstance() {
+        if (_instance == null)
+            _instance = new WeatherClient();
         return _instance;
     }
 
@@ -67,7 +67,7 @@ public class WeatherClient {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    Observable<BaseRequest> getWeatherInCity(String cityId){
+    public Observable<BaseRequest> getWeatherInCity(String cityId) {
         return makeAsynk(restApi.getWeatherInCity(cityId));
     }
 }
