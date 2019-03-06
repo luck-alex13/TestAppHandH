@@ -3,7 +3,6 @@ package com.example.user.testapphandh.helpers;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.annotation.StringRes;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -46,14 +45,7 @@ public class Utils {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 
-    public static boolean checkConnection(Context appContext, @StringRes int errStr) {
-        boolean res = hasConnection(appContext);
-        if (!res) {
-            showToast(appContext, errStr);
-        }
-        return res;
-    }
-
+    @SuppressWarnings("deprecation")
     public static boolean hasConnection(Context appContext) {
         boolean connection = false;
         try {

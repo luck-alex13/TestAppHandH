@@ -10,11 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.user.testapphandh.databinding.ActivityLoginBinding;
-import com.example.user.testapphandh.network.BaseRequest;
-import com.example.user.testapphandh.network.Const;
-import com.example.user.testapphandh.network.WeatherClient;
-
-import io.reactivex.functions.Consumer;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -29,14 +24,6 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.content.emailSignInButton.setOnClickListener(v -> {
             viewModel.loginClicked(binding.content.email, binding.content.password);
-
-            WeatherClient.getInstance().getWeatherInCity(Const.SPB_CITY_ID)
-                    .subscribe(new Consumer<BaseRequest>() {
-                        @Override
-                        public void accept(BaseRequest baseRequest) throws Exception {
-
-                        }
-                    });
         });
     }
 

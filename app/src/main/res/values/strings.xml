@@ -16,4 +16,5 @@
         completions."
     </string>
     <string name="create">Создать</string>
+    <string name="no_internet_connection">Оствутсвует интернет соединение. Невозможно выполнить запрос.</string>
 </resources>

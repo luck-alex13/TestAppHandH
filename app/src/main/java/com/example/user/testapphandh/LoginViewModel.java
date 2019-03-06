@@ -4,12 +4,19 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import com.example.user.testapphandh.helpers.SnackbarHelper;
+import com.example.user.testapphandh.helpers.Utils;
 import com.example.user.testapphandh.helpers.ValidationHelper;
+import com.example.user.testapphandh.network.BaseRequest;
+import com.example.user.testapphandh.network.Const;
+import com.example.user.testapphandh.network.WeatherClient;
+
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 public class LoginViewModel extends AndroidViewModel {
 
@@ -20,7 +27,7 @@ public class LoginViewModel extends AndroidViewModel {
     public void loginClicked(EditText emailEditText, EditText passEditText) {
         if (validateEmail(emailEditText) && validatePassword(passEditText)) {
             hideKeyboard(passEditText);
-            SnackbarHelper.showSnack(emailEditText, "All right!");
+            requestWeather();
         }
     }
 
@@ -54,6 +61,26 @@ public class LoginViewModel extends AndroidViewModel {
             if (imm != null)
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    public void requestWeather(){
+        if(checkConnection(getApplication(), R.string.no_internet_connection)){
+           Disposable dp = WeatherClient.getInstance().getWeatherInCity(Const.SPB_CITY_ID)
+                    .subscribe(new Consumer<BaseRequest>() {
+                        @Override
+                        public void accept(BaseRequest baseRequest) throws Exception {
+
+                        }
+                    });
+        }
+    }
+
+    public static boolean checkConnection(Context appContext, @StringRes int errStr) {
+        boolean res = Utils.hasConnection(appContext);
+        if (!res) {
+            Utils.showToast(appContext, errStr);
+        }
+        return res;
     }
 
 }
