@@ -32,8 +32,8 @@ public class WeatherClient {
         httpClient.readTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .writeTimeout(TIME_OUT, TimeUnit.SECONDS);
-        /*tokenInterceptor = new TokenInterceptor();
-        httpClient.addNetworkInterceptor(tokenInterceptor);*/
+
+        httpClient.addNetworkInterceptor(new ApiKeyInterceptor(Const.API_KEY));
         //logging
         if (BuildConfig.LOGS_ENABLED) {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
