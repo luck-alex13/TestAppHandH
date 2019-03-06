@@ -1,4 +1,4 @@
-package com.example.user.testapphandh;
+package com.example.user.testapphandh.helpers;
 
 import android.support.design.widget.Snackbar;
 import android.view.View;
