@@ -10,10 +10,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.example.user.testapphandh.data.WeatherResponse;
+import com.example.user.testapphandh.helpers.SnackbarHelper;
 import com.example.user.testapphandh.helpers.Utils;
 import com.example.user.testapphandh.helpers.ValidationHelper;
 import com.example.user.testapphandh.network.Const;
 import com.example.user.testapphandh.network.WeatherClient;
+
+import java.util.Locale;
 
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -27,7 +30,7 @@ public class LoginViewModel extends AndroidViewModel {
     public void loginClicked(EditText emailEditText, EditText passEditText) {
         if (validateEmail(emailEditText) && validatePassword(passEditText)) {
             hideKeyboard(passEditText);
-            requestWeather();
+            requestWeather(emailEditText);
         }
     }
 
@@ -63,13 +66,14 @@ public class LoginViewModel extends AndroidViewModel {
         }
     }
 
-    public void requestWeather(){
-        if(checkConnection(getApplication(), R.string.no_internet_connection)){
-           Disposable dp = WeatherClient.getInstance().getWeatherInCity(Const.SPB_CITY_ID)
+    public void requestWeather(View view) {
+        if (checkConnection(getApplication(), R.string.no_internet_connection)) {
+            Disposable dp = WeatherClient.getInstance()
+                    .getWeatherInCity(Const.SPB_CITY_ID, Locale.getDefault().getLanguage(), Const.UNIT_METRIC)
                     .subscribe(new Consumer<WeatherResponse>() {
                         @Override
                         public void accept(WeatherResponse weatherResponse) throws Exception {
-
+                            SnackbarHelper.showSnack(view, weatherResponse.getWeather().toString());
                         }
                     });
         }

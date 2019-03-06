@@ -68,7 +68,7 @@ public class WeatherClient {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Observable<WeatherResponse> getWeatherInCity(String cityId) {
-        return makeAsynk(restApi.getWeatherInCity(cityId));
+    public Observable<WeatherResponse> getWeatherInCity(String cityId, String languageCode, String unit) {
+        return makeAsynk(restApi.getWeatherInCity(cityId, languageCode, unit));
     }
 }

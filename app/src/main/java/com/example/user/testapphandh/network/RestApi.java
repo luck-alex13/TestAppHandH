@@ -10,6 +10,8 @@ public interface RestApi {
 
     @GET(Const.WEATHER)
     Observable<WeatherResponse> getWeatherInCity(
-            @Query("id") String cityId
+            @Query("id") String cityId,
+            @Query("lang") String languageCode,
+            @Query("unit") String unit
     );
 }
