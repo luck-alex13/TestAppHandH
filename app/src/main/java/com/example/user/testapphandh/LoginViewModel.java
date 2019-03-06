@@ -73,7 +73,12 @@ public class LoginViewModel extends AndroidViewModel {
                     .subscribe(new Consumer<WeatherResponse>() {
                         @Override
                         public void accept(WeatherResponse weatherResponse) throws Exception {
-                            SnackbarHelper.showSnack(view, weatherResponse.getWeather().toString());
+                            String weather = Utils.format(view.getContext(), R.string.weather_info,
+                                    weatherResponse.getMain().getTemp(),
+                                    weatherResponse.getMain().getHumidity(),
+                                    weatherResponse.getWind().getSpeed());
+
+                            SnackbarHelper.showSnack(view, weather);
                         }
                     });
         }

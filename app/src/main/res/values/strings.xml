@@ -17,4 +17,5 @@
     </string>
     <string name="create">Создать</string>
     <string name="no_internet_connection">Оствутсвует интернет соединение. Невозможно выполнить запрос.</string>
+    <string name="weather_info">Температура %1$.0f °C; Влажность: %2$d%%; Скорость ветра: %3$d м/с</string>
 </resources>
