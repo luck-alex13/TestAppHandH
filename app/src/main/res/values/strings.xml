@@ -18,4 +18,10 @@
     <string name="create">Создать</string>
     <string name="no_internet_connection">Оствутсвует интернет соединение. Невозможно выполнить запрос.</string>
     <string name="weather_info">Температура %1$.0f °C; Влажность: %2$d%%; Скорость ветра: %3$d м/с</string>
+
+    <string name="network_error_code">Произошла ошибка, запрос не может быть выполнен. Код: %d</string>
+    <string name="network_error_message">Произошла ошибка: %s</string>
+    <string name="unhandled_error">Произошла непредвиденная ошибка. Запрос невыполнен.</string>
+    <string name="server_timeout">Удаленный сервер не отвечает. Повторите попытку позже.</string>
+
 </resources>
