@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.example.user.testapphandh.BuildConfig;
 
+import java.util.Locale;
+
 public class Utils {
 
     private static final String TAG = "LOG_";
@@ -35,6 +37,22 @@ public class Utils {
     public static void err(String tag, Object obj, Throwable throwable) {
         if (BuildConfig.LOGS_ENABLED && obj != null)
             Log.e(TAG + tag, obj.toString(), throwable);
+    }
+
+    public static String getString(Context context, int resourceId) {
+        return context.getString(resourceId);
+    }
+
+    public static CharSequence getText(Context context, int resourceId) {
+        return context.getText(resourceId);
+    }
+
+    public static String format(Context context, int stringRes, Object value) {
+        return String.format(Locale.US, getString(context, stringRes), value);
+    }
+
+    public static String format(Context context, int stringRes, Object... value) {
+        return String.format(Locale.US, getString(context, stringRes), value);
     }
 
     public static void showToast(Context context, String message) {
@@ -68,7 +86,7 @@ public class Utils {
                 }
             }
         } catch (Exception ex) {
-            err(TAG, "InternetController: has NO Connection() ", ex);
+            err(TAG, "NO Connection() ", ex);
             ex.printStackTrace();
             connection = false;
         }
