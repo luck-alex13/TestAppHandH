@@ -36,7 +36,7 @@ public class LoginViewModel extends AndroidViewModel {
     public void loginClicked(EditText emailEditText, EditText passEditText) {
         if (validateEmail(emailEditText) && validatePassword(passEditText)) {
             hideKeyboard(passEditText);
-            requestWeather(emailEditText);
+            requestWeather();
         }
     }
 
@@ -72,17 +72,16 @@ public class LoginViewModel extends AndroidViewModel {
         }
     }
 
-    public void requestWeather(View view) {
+    public void requestWeather() {
         if (checkConnection(getApplication(), R.string.no_internet_connection)) {
             Disposable dp = WeatherClient.getInstance()
                     .getWeatherInCity(Const.SPB_CITY_ID, Locale.getDefault().getLanguage(), Const.UNIT_METRIC)
                     .subscribe(weatherResponse -> {
-                        String weather = Utils.format(view.getContext(), R.string.weather_info,
+                        String weather = Utils.format(getApplication(), R.string.weather_info,
                                 weatherResponse.getMain().getTemp(),
                                 weatherResponse.getMain().getHumidity(),
                                 weatherResponse.getWind().getSpeed());
                         weatherInfo.postValue(weather);
-                        //SnackbarHelper.showSnack(view, weather);
                     }, throwable -> handleError(getApplication(), throwable));
         }
     }
