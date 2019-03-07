@@ -1,14 +1,18 @@
 package com.example.user.testapphandh;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 
+import com.example.user.testapphandh.R;
 import com.example.user.testapphandh.databinding.ActivityLoginBinding;
 import com.example.user.testapphandh.helpers.SnackbarHelper;
 
@@ -29,6 +33,23 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.content.emailSignInButton.setOnClickListener(v -> {
             viewModel.loginClicked(binding.content.email, binding.content.password);
+        });
+
+        binding.content.password.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_LEFT = 0;
+            final int DRAWABLE_TOP = 1;
+            final int DRAWABLE_RIGHT = 2;
+            final int DRAWABLE_BOTTOM = 3;
+
+            if(event.getAction() == MotionEvent.ACTION_UP) {
+                if(event.getRawX() >= (binding.content.password.getRight() -
+                        binding.content.password.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    // your action here
+                    showAlert();
+                    return true;
+                }
+            }
+            return false;
         });
     }
 
@@ -60,5 +81,20 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.pass_help_title)
+                .setMessage(R.string.pass_help)
+                .setCancelable(false)
+                .setNegativeButton(com.example.user.testapphandh.R.string.ok_btn,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
