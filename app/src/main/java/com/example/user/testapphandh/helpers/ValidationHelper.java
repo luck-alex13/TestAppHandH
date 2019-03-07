@@ -12,7 +12,7 @@ public class ValidationHelper {
       (?=.*[a-z])		#   must contains one lowercase characters
       (?=.*[A-Z])		#   must contains one uppercase characters
                   .		#     match anything with previous condition checking
-                    {6,20}	#        length at least 6 characters and maximum of 20
+                    {6,32}	#        length at least 6 characters and maximum of 32
         )			# End of group
     */
     private static final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})";
