@@ -2,6 +2,7 @@ package com.example.user.testapphandh;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
@@ -9,7 +10,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import com.example.user.testapphandh.helpers.SnackbarHelper;
 import com.example.user.testapphandh.helpers.Utils;
 import com.example.user.testapphandh.helpers.ValidationHelper;
 import com.example.user.testapphandh.network.Const;
@@ -26,6 +26,8 @@ import retrofit2.HttpException;
 public class LoginViewModel extends AndroidViewModel {
 
     private static final String TAG = LoginViewModel.class.getSimpleName();
+
+    private MutableLiveData<String> weatherInfo = new MutableLiveData<>();
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
@@ -79,8 +81,8 @@ public class LoginViewModel extends AndroidViewModel {
                                 weatherResponse.getMain().getTemp(),
                                 weatherResponse.getMain().getHumidity(),
                                 weatherResponse.getWind().getSpeed());
-
-                        SnackbarHelper.showSnack(view, weather);
+                        weatherInfo.postValue(weather);
+                        //SnackbarHelper.showSnack(view, weather);
                     }, throwable -> handleError(getApplication(), throwable));
         }
     }
@@ -108,4 +110,7 @@ public class LoginViewModel extends AndroidViewModel {
         }
     }
 
+    public MutableLiveData<String> getWeatherInfo() {
+        return weatherInfo;
+    }
 }

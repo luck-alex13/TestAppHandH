@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.user.testapphandh.databinding.ActivityLoginBinding;
+import com.example.user.testapphandh.helpers.SnackbarHelper;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -21,6 +22,10 @@ public class LoginActivity extends AppCompatActivity {
         setUpToolbar(binding.toolbar);
 
         LoginViewModel viewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+
+        viewModel.getWeatherInfo().observe(this, mess -> {
+            SnackbarHelper.showSnack(binding.getRoot(), mess);
+        });
 
         binding.content.emailSignInButton.setOnClickListener(v -> {
             viewModel.loginClicked(binding.content.email, binding.content.password);
