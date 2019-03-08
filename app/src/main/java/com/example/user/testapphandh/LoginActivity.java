@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 
-import com.example.user.testapphandh.R;
 import com.example.user.testapphandh.databinding.ActivityLoginBinding;
 import com.example.user.testapphandh.helpers.SnackbarHelper;
 
