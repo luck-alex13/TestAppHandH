@@ -38,7 +38,6 @@ public class LoginViewModel extends AndroidViewModel {
     public void loginClicked(EditText emailEditText, EditText passEditText) {
         if (validateEmail(emailEditText) && validatePassword(passEditText)) {
             hideKeyboard(passEditText);
-            showProgress.postValue(true);
             requestWeather();
         }
     }
@@ -77,9 +76,10 @@ public class LoginViewModel extends AndroidViewModel {
 
     public void requestWeather() {
         if (checkConnection(getApplication(), R.string.no_internet_connection)) {
+            showProgress.postValue(true);
             Disposable dp = WeatherClient.getInstance()
                     .getWeatherInCity(Const.SPB_CITY_ID, Locale.getDefault().getLanguage(), Const.UNIT_METRIC)
-                    .delay(2, TimeUnit.SECONDS)// only for long request simulation
+                    .delay(2, TimeUnit.SECONDS)// only for long request simulation to show progress
                     .subscribe(weatherResponse -> {
                         showProgress.postValue(false);
                         String weather = Utils.format(getApplication(), R.string.weather_info,
