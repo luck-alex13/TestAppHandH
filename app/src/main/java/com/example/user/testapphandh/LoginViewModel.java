@@ -30,16 +30,18 @@ public class LoginViewModel extends AndroidViewModel {
 
     private MutableLiveData<String> weatherInfo = new MutableLiveData<>();
     private MutableLiveData<Boolean> showProgress = new MutableLiveData<>();
+    private MutableLiveData<Boolean> buttonEnabled = new MutableLiveData<>();
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
     }
 
     public void loginClicked(EditText emailEditText, EditText passEditText) {
+        buttonEnabled.postValue(false);
         if (validateEmail(emailEditText) && validatePassword(passEditText)) {
             hideKeyboard(passEditText);
             requestWeather();
-        }
+        }else buttonEnabled.postValue(true);
     }
 
     public boolean validateEmail(EditText editText) {
@@ -82,6 +84,7 @@ public class LoginViewModel extends AndroidViewModel {
                     .delay(2, TimeUnit.SECONDS)// only for long request simulation to show progress
                     .subscribe(weatherResponse -> {
                         showProgress.postValue(false);
+                        buttonEnabled.postValue(true);
                         String weather = Utils.format(getApplication(), R.string.weather_info,
                                 weatherResponse.getName(),
                                 weatherResponse.getMain().getTemp(),
@@ -90,9 +93,10 @@ public class LoginViewModel extends AndroidViewModel {
                         weatherInfo.postValue(weather);
                     }, throwable -> {
                         showProgress.postValue(false);
+                        buttonEnabled.postValue(true);
                         handleError(getApplication(), throwable);
                     });
-        }
+        }else buttonEnabled.postValue(true);
     }
 
     public static boolean checkConnection(Context appContext, @StringRes int errStr) {
@@ -124,5 +128,9 @@ public class LoginViewModel extends AndroidViewModel {
 
     public MutableLiveData<Boolean> getShowProgress() {
         return showProgress;
+    }
+
+    public MutableLiveData<Boolean> getButtonEnabled() {
+        return buttonEnabled;
     }
 }

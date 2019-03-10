@@ -38,6 +38,10 @@ public class LoginActivity extends AppCompatActivity {
             else DialogManager.Instance.hide();
         });
 
+        viewModel.getButtonEnabled().observe(this, enabled -> {
+            binding.content.emailSignInButton.setEnabled(enabled);
+        });
+
         binding.content.emailSignInButton.setOnClickListener(v -> {
             viewModel.loginClicked(binding.content.email, binding.content.password);
         });
