@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +13,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.user.testapphandh.databinding.ActivityLoginBinding;
+import com.example.user.testapphandh.helpers.DialogManager;
 import com.example.user.testapphandh.helpers.SnackbarHelper;
 
 public class LoginActivity extends AppCompatActivity {
@@ -40,11 +44,13 @@ public class LoginActivity extends AppCompatActivity {
             final int DRAWABLE_RIGHT = 2;
             final int DRAWABLE_BOTTOM = 3;
 
-            if(event.getAction() == MotionEvent.ACTION_UP) {
-                if(event.getRawX() >= (binding.content.password.getRight() -
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= (binding.content.password.getRight() -
                         binding.content.password.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
                     // your action here
-                    showAlert();
+                    DialogManager.showAlert(LoginActivity.this, R.string.pass_help_title, R.string.pass_help,
+                            (dialog, which) -> {
+                            });
                     return true;
                 }
             }
@@ -82,18 +88,4 @@ public class LoginActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void showAlert(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.pass_help_title)
-                .setMessage(R.string.pass_help)
-                .setCancelable(false)
-                .setNegativeButton(com.example.user.testapphandh.R.string.ok_btn,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
 }

@@ -24,7 +24,8 @@
     <string name="unhandled_error">Произошла непредвиденная ошибка. Запрос невыполнен.</string>
     <string name="server_timeout">Удаленный сервер не отвечает. Повторите попытку позже.</string>
     <string name="pass_help_title">Справка о пароле</string>
-    <string name="pass_help">Пароль должен быть длиной как минимум 6 символов, должен обязательно содержать 1 строчную букву, 1 заглавную, и 1 цифру.</string>
+    <string name="pass_help">Пароль должен быть длиной как минимум 6 символов, должен обязательно содержать 1 строчную и 1 заглавную букву и 1 цифру.</string>
     <string name="ok_btn">ОК</string>
+    <string name="please_wait">Пожалуйста подождите</string>
 
 </resources>
