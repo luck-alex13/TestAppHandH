@@ -83,6 +83,7 @@ public class LoginViewModel extends AndroidViewModel {
                     .subscribe(weatherResponse -> {
                         showProgress.postValue(false);
                         String weather = Utils.format(getApplication(), R.string.weather_info,
+                                weatherResponse.getName(),
                                 weatherResponse.getMain().getTemp(),
                                 weatherResponse.getMain().getHumidity(),
                                 weatherResponse.getWind().getSpeed());
