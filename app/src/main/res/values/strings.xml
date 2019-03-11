@@ -12,11 +12,9 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">Некорректный пароль</string>
     <string name="error_field_required">Заполните поле</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+
     <string name="create">Создать</string>
-    <string name="no_internet_connection">Оствутсвует интернет соединение. Невозможно выполнить запрос.</string>
+    <string name="no_internet_connection">Отсутствует интернет соединение. Невозможно выполнить запрос.</string>
     <string name="weather_info">Город: %1$s; Температура %2$.0f °C; Влажность: %3$d%%; Скорость ветра: %4$d м/с</string>
 
     <string name="network_error_code">Произошла ошибка, запрос не может быть выполнен. Код: %d</string>
