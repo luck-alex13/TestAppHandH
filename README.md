@@ -10,4 +10,4 @@
 
 <p>Скриншот экрана приложения</p> <img src="https://github.com/luck-alex13/TestAppHandH/blob/master/device-screen.png" width="300">
 
-Полная демонстрация работы приложения отражена на [видео](https://drive.google.com/drive/folders/1eRkABBphcVVMnFnjSHkiU57nQtFOB_XQ).
+Полная демонстрация работы приложения отражена на [видео](https://drive.google.com/open?id=15J6WvaGoQtBQhtUN705L-KSUoZr92oDW).
