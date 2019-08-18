@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -43,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         binding.content.emailSignInButton.setOnClickListener(v -> {
-            viewModel.loginClicked(binding.content.email, binding.content.password);
+            viewModel.loginClicked(binding.content.email, binding.content.emailInpTl, binding.content.password, binding.content.passwordInpLt);
         });
 
         binding.content.password.setOnTouchListener((v, event) -> {
@@ -65,6 +67,41 @@ public class LoginActivity extends AppCompatActivity {
             }
             return false;
         });
+
+        binding.content.email.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                binding.content.emailInpTl.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        binding.content.password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                binding.content.passwordInpLt.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     private void setUpToolbar(Toolbar toolbar) {

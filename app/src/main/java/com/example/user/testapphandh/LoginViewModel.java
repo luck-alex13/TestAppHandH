@@ -6,6 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
+import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -36,33 +37,33 @@ public class LoginViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public void loginClicked(EditText emailEditText, EditText passEditText) {
+    public void loginClicked(EditText emailEditText, TextInputLayout emailInpLt, EditText passEditText, TextInputLayout passInpLt) {
         buttonEnabled.postValue(false);
-        if (validateEmail(emailEditText) && validatePassword(passEditText)) {
+        if (validateEmail(emailEditText, emailInpLt) && validatePassword(passEditText, passInpLt)) {
             hideKeyboard(passEditText);
             requestWeather();
         }else buttonEnabled.postValue(true);
     }
 
-    public boolean validateEmail(EditText editText) {
+    public boolean validateEmail(EditText editText, TextInputLayout inputLayout) {
         boolean isValid = ValidationHelper.isValidEmail(editText.getText().toString());
         if (!isValid) {
             if (editText.getText().length() == 0)
-                editText.setError(getApplication().getString(R.string.error_field_required));
+                inputLayout.setError(getApplication().getString(R.string.error_field_required));
             else
-                editText.setError(getApplication().getString(R.string.error_invalid_email));
+                inputLayout.setError(getApplication().getString(R.string.error_invalid_email));
             editText.requestFocus();
         }
         return isValid;
     }
 
-    public boolean validatePassword(EditText editText) {
+    public boolean validatePassword(EditText editText, TextInputLayout inputLayout) {
         boolean isValid = ValidationHelper.isValidPassword(editText.getText().toString());
         if (!isValid) {
             if (editText.getText().length() == 0)
-                editText.setError(getApplication().getString(R.string.error_field_required));
+                inputLayout.setError(getApplication().getString(R.string.error_field_required));
             else
-                editText.setError(getApplication().getString(R.string.error_incorrect_password));
+                inputLayout.setError(getApplication().getString(R.string.error_incorrect_password));
             editText.requestFocus();
         }
         return isValid;
